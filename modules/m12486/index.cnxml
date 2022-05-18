@@ -1,0 +1,61 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Auto-biographies</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>e996d3e4-7d0b-4e92-8df5-f742f69229fc</md:uuid>
+</metadata>
+
+  <content>
+     <section id="Charles">
+     <title>Charles Tripp</title>
+     <figure id="CharlesPicture">
+        <title>Charles Tripp</title>
+        <media id="idm1190432" alt=""><image src="../../media/Charles.jpg" mime-type="image/jpeg"/></media>
+     </figure>
+     <para id="Charles1">
+        Charles Tripp is from Colorado, and is currently studying Electrical Engineering at Rice university.
+     </para>
+     <para id="Charles2">
+        I'm very interested in circuit design, computer engineering, and almost anything related to electronics or computers. I am an expert programmer and have written several widely distributed programs; I am comfortable with many programming languages, and am familiar with most computer systems. One of my major intrests right now is neural networks, and their application in various capacities.
+     </para>
+     <para id="Charles3">
+        My primary contribution to this project was the program. I am responsible for the majority of the projects code and the details of its implementation.
+     </para>
+     </section>
+     <section id="Michael">
+     <title>Michael Lawrence</title>
+     <para id="Michael1">
+     <figure id="MichaelPicture">
+        <title>Michael Lawrence</title>
+        <media id="idm7474208" alt=""><image src="../../media/Michael1.JPG" mime-type="image/jpeg"/></media>
+     </figure>
+        Hello world.  My name is Michael Lawrence (as you might notice from the title of this section).  I am currently an undergraduate Electrical Engineering major at Rice University.
+     </para>
+     <para id="Michael2">
+        My interests range from music to computers to sports to ... just about anything I find interesting, actually.  I play clarinet and am competent with a trumpet, saxophone or piano under my fingers.  I look forward to voice lessons next semester.  I listen to Red Hot Chili Peppers, Guster, Radiohead, Linkin Park, and the Beatles substantially, but my favorite artist is probably Eminem.  I also enjoy, on occasion, MC Hawking, Benedictine Monks, Pepe Romero (a classical guitarist) and Apocalyptica.  A plethora of other artists might also make the list, but one must be concise. 
+     </para>
+     <para id="Michael3">
+        Digital signal processing and physical electronics were my two favorite courses this semester in terms of content; therein may be found my electrical engineering interests.  I am also in the process of building a robot capable of competing in the IEEE Region V competition; but it'll be the first thing to go when my workload gets too heavy next semester.
+     </para>
+     <figure id="MichaelPicture2">
+        <title>Michael Lawrence Playing Billiards</title>
+        <media id="idp6275184" alt=""><image src="../../media/Michael2.JPG" mime-type="image/jpeg"/></media>
+     </figure>
+     <para id="Michael4">
+        I play billiards.  I won the Rice University intramural Billiards Singles competition last year and was on the winning team for College Intramural Billiards this year (singles and doubles competition have yet to take place).  I enjoy a good game of ping pong.  Basketball and tennis are two other athletic interests of mine.
+     </para>
+     <para id="Michael5">
+        My contribution to this project was primarily the coding/writing of the Connexions course you see before you.  I provided a wall off of which Charles could bounce ideas for coding in Matlab but he generally dominated that section of our project.
+     </para>
+     </section>
+     <section id="Nate">
+     <title>Nate Shaw</title>
+     <figure id="NatePicture">
+        <title>Nate Shaw</title>
+        <media id="idm6959840" alt=""><image src="../../media/Nate.jpg" mime-type="image/jpeg"/></media>
+     </figure>
+     <para id="Nate1">
+        Originally from Houston, I'm currently a Junior E.E. going into my second semester at Rice. When I'm not in the lab or doing a problem set you'll probably find me on the basketball court or listening to music in the 'privacy' of my spacious double. After Rice, I plan on getting an MBA...or becoming a professional gambler...whichever comes first :-)
+     </para>
+     </section>
+  </content>
+  
+</document>

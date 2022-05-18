@@ -1,0 +1,66 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Simple Music Theory as it relates to Signal Processing</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>fe3c195b-b102-489f-9999-a0a9290cbb80</md:uuid>
+</metadata>
+
+  <content>
+     <section id="Theory">
+     <title>Simple Music Theory</title>
+
+     <para id="para1">
+        For those of you unfamiliar with music, we offer a (very) brief introduction into the technical aspects of music.
+     </para>   
+     <para id="para2">
+        The sounds you hear over the airwaves and in all manner of places may be grouped into 12 superficially disparate categories.  Each category is labeled a "note" and given an alphasymbolic representation.  That is, the letters A through G represent seven of the notes and the other five are represented by appending either a pound sign (#, or sharp) or something that looks remarkably similar to a lower-case b (also called a flat).
+     </para> 
+     <para id="para3">
+        Although these notes were conjured in an age where the modern theory of waves and optics was not dreamt of even by the greatest of thinkers, they share some remarkable characteristics.  Namely, every note that shares its name with another (notes occupying separate "octaves," with one sounding higher or lower than the other) has a frequency that is some rational multiple of the frequency of the notes with which it shares a name.  More simply, an A in one octave has a frequency twice that of an A one octave below.
+     </para>
+     <para id="para4">
+        As it turns out, <emphasis>every</emphasis> note is related to every other note by a common multiplicative factor.  To run the full gamut, one need only multiply a given note by the 12th root of two n times to find the nth note "above" it (i.e. going up in frequency).   Mathematically:
+     </para>
+     <para id="eq1">
+        <m:math>
+           <m:apply>
+              <m:eq/>
+              <m:ci>(nth note above base frequency)</m:ci>
+	      <m:apply>
+	         <m:times/>
+	         <m:ci>(base frequency)</m:ci>
+	         <m:apply>
+	            <m:power/>
+	            <m:cn> 2 </m:cn>
+                    <m:apply>
+                       <m:divide/>
+        	       <m:ci>n</m:ci>
+         	       <m:cn>12</m:cn>
+                    </m:apply>
+	         </m:apply>
+	      </m:apply>
+           </m:apply>
+        </m:math>
+     </para>
+
+     </section>
+     <section id="Harmonics">
+     <title>Harmonics</title>
+     <para id="para5">
+     The "note" mentioned above is the pitch you most strongly hear.  Interestingly, however, there <emphasis>are </emphasis>other notes extant in the signal your ear receives.  Any non-electronic instrument actually produces many, many notes, all of which are overshadowed by the dominant tone.  These extra notes are called <term>harmonics</term>.  They are responsible for the various idiosyncracies of an instrument; they give each instrument its peculiar flavor.  It is, effectively, with these that we identify the specific instrument playing.
+     </para>
+     </section>
+
+<section id="Duration">
+     <title>Duration and Volume</title>
+     <para id="para6">
+     We will also make a quick note (no pun intended) for the other two defining characteristics of a musical sound. <term>Duration</term> is fairly self-explanatory; notes last for a certain length of time.  It is important to mention that in standard music practices most notes last for a length of time relative to the <term>tempo</term> of the music.  The tempo is merely the rate as which the music is played.  Thus, by arbitrarily defining a time span to be equal to one form of note duration we may derive other note durations from that.
+     </para>
+     <para id="para7">
+     More concretely: taking a unit of time, say one minute, and dividing it into intervals, we have <term>beats per minute</term>, or <term>bpm</term>.  One beat corresponds, in common time, to a quarter note.  This is one quarter of the longest commonly-used note, the whole note.  The length of time is either halved or doubled to find the nearest note duration to the base duration (and so on from there).  The "U.S. name" for the duration of the notes is based on their fraction of the longest note.  Other, archaic, naming conventions include the English system replete with hemi demi semi quavers and crotchets (for more information, follow the supplemental link on the left of the page).
+     </para>
+     <para id="para8">
+     <term>Volume</term>, on the other hand, is based on the signal power and is not so easily quantifiable.  The terms in music literature are always subjective (louder, softer) and volume-related styles from previous eras are heavily debated ("but certainly Mozart wanted it to be louder than <emphasis>that</emphasis>!").  For our project, we save the information representing the volume early on, then normalize it out of the computations to ease the comparisons.  
+     </para>
+     </section>
+  </content>
+  
+</document>

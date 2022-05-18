@@ -1,0 +1,94 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Odds and Ends</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>fc3838b7-b596-4451-8722-22709c2ec694</md:uuid>
+</metadata>
+
+  <content>
+     <para id="para30">
+        This module exists solely to tie up loose ends left over from the previous modules.  More precisely, in this module may be found the Matlab code and workspace used for the purposes of this project and the sample waveforms against which we tested our program.  First, though, a discussion on up-sampling:
+     </para>
+     <section id="sampling">
+     <title>Up-Sampling</title>
+     <para id="upsampling">
+        <term>Up-sampling</term> (that is, representing something with few samples as something with many samples) is relatively straight forward when one deals with rational multiples.  First, one converts the signal into the frequency domain using the Fast Fourier Transform discussed in a previous module.  The samples are then "spread out" (zeros are added) based on the rational multiple by which one is up-sampling.  Then a low-pass filter and IFFT later, you're back to an up-sampled version of the original signal.
+     </para>
+     </section>
+     <section id="Limits">
+     <title>Limitations</title>
+     <para id="limitations">
+        No project is complete without first recognizing the limitations inherent in whatever was accomplished.  The most significant drawback in our program in terms of realizing our final goal is the lack of automating the threshold detection.  Without an "intelligent" program, perhaps based on a neural network, we have little hope of filtering out a particular instrument in the data representing a full orchestra.  We are quite capable, however, of detecting multiple instruments so long as the multiple is not too large and we are allowed to set the threshold ourselves.  
+     </para>
+     <para id="limitations2">
+        The computational complexity increases with the number of instruments (samples) tested.  We create no explicit infrastructure to break a song into component tracks (at least conceptually) so that we may analyze each one against a particular set of samples representing a single instrument.  Also, we would be well-advised to input the frequency domain representation of the samples to decrease computational complexity.
+     </para>
+     <para id="limitations3">
+        A further limitation is the need to input several samples from the same instrument.  Ideally, we would input merely the sound of that instrument playing and modulate that one sound to create as wide a range of tones as was required.  The idea here being that a given instrument has a unique frequency fingerprint that remains intact over all frequencies.  This is not perfectly true (each instrument has its own idiosyncracies relating to its real-world implementation), but might prove accurate enough for our proposed analysis.
+     </para>
+     </section>
+     <section id="Future">
+     <title>Future Instrument and Note Recognition Endeavors</title>
+     <para id="Future1">
+        And no limitations section is complete without some mention of how to surpass those limitations.  The goal of any project is to refine the product to the point beyond which refinement is no longer possible.  Because this is in practice impossible to accomplish, we will list a set of future "next steps" we or others who follow may be encouraged to take.
+     </para>
+     <para id="Future2">
+        To intelligently detect the relative volume of noise in a given sample, one might best be served to create a statistical filter which recognizes random noise.  This statistical filter would, in theory, identify the windows which most resemble random noise.  From knowledge of which windows cause noise, one might derive the volume-level (read: power-level) associated with said noise and set the threshold at some point beyond that.  The upper-bound of the threshold could be found as the lowest power value for any other non-noise (as indicated by the statistical filter) window.
+     </para>
+     <para id="Future3">  The threshold detection for specific instruments is more complicated: our suggestion is to develop some method of correlation or detection as-of-yet unknown to these authors (but likely known to those who research these concepts).  This method would likely match frequency domain signals rather than time domain (that is, match filtering two frequency domain representations; sort of a meta-Matched Filter in terms of FFTs) using some statistical algorithm.
+     </para>
+     <para id="Future4">
+        The computation complexity issue is trivial to solve.  One must simply code the infrastructure to analyze a given signal in several channels, each acting as our entire program now acts.  To convert the samples into the frequency domain, one need only FFT each sample.
+     </para>
+     <para id="Future5">
+        The final observed limitation, too, is within our grasp.  We briefly attempted a method which is promising: Mellin transformation.  Essentially, when one takes a signal and transforms it into the Mellin domain (by multiplying by an exponential), one is in the position to merely phase-shift the frequency domain representation to acheive a modulation.  Thus, converting back from the Mellin domain after phase-shifting the original transformed signal changes one note into another (musical modulation).  This also has (<emphasis>many</emphasis>) more applications than simply for our particular program.  Image recognition over dilation comes most immediately to mind.
+     </para>
+     </section>
+     <section id="Matlab">
+     <title>Relevant Files</title>
+     <para id="Code">
+     <note type="note" id="idp8103632">If you choose to use our files, we would like to be informed of their use.  Not because we want to inhibit any potential use of our work but rather because we want to know our audience is more than a few trillion electrons searching the internet for googly content.  Imitation is, after all, the sincerest form of flattery.  We hope you find our work both enlightening and useful.</note>
+     </para>
+     <section id="Matlabcode">
+     <title>Matlab Code</title>
+     <para id="para31"><link resource="ProjectD.m">Our primary program.</link>
+     </para>
+     <para id="para32"><link resource="postProcessor.m">Our output-processing program.</link>
+     </para>
+     <para id="para33"><link resource="upSampleSample.m">Our Up-Sampling program.  </link>  (Expects a vector as input; outputs a vector).
+     </para>
+     <para id="para33a"><link resource="upSampleSamples2.m">Our Up-Sampling program.</link>  (Expects a struct as created from Matlab's "Import Data" feature when importing a .wav file as input; outputs a similar struct).
+     </para>
+     </section>
+     <section id="Matlabworkspace">
+     <title>Clarinet Samples</title>
+     <para id="para34"><link resource="samples2.mat">The samples used for analysis of the professional recordings (i.e. recordings sampled at 44100 Hz)</link>
+     </para>
+     <para id="para35"><link resource="samples.mat">The samples used for analysis of the unprofessional recordings (i.e. recordings sampled at 22050 Hz)</link>
+     </para>
+     <para id="para35a">
+        One may convert these samples to any other sampling frequency by means of the up-sampling program.  The samples cover from the lowest note on a Bb Clarinet (E in the chalameau register) to the highest C in the clarion register (right before reaching the altissimo register).  The lowest three notes have questionable integrity (I choose to blame the microphone ;-) ).
+     </para>
+     </section>
+     <section id="Music">
+     <title>Music Files (Signals)</title>
+     <para id="para36"><link resource="chromatic_slurred.wav">A Chromatic Scale</link>, as performed on clarinet by the up-and-coming clarinetist, Michael Lawrence.
+     </para>
+     <para id="para37"><link resource="Stravinsky_Three_Pieces_for_Clarinet.mp3">Stravinsky's <emphasis>Three Pieces for Clarinet</emphasis></link>, unknown artist.
+     </para>
+     <para id="para38"><link resource="Barber_Adagio_Clarinet_Choir.mp3">Barber's <emphasis>Adagio for Strings</emphasis>.</link>, Kalman Opperman Clarinet Choir.
+     </para>
+     <para id="para39">
+        For our program to work, .mp3 files must first be decompressed into .wav files.  We used a free program found on http://www.cnet.download.com .  We would post the decompressed files but, as one might imagine, they are too large to post on Connexions. 
+     </para>
+     </section>
+     <section id="Poster">
+     <title>Poster</title>
+     <para id="para40"><link resource="301_project.ppt">Our Poster.</link>
+     </para>
+     <para id="para41">
+        In the name of thoroughness, we include a copy of the poster created for an end-of-semester poster session show-casing our project.  You should find a great deal of it familiar.
+     </para>
+     </section>
+     </section>
+  </content>
+  
+</document>

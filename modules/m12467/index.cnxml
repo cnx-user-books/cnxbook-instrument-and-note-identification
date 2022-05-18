@@ -1,0 +1,116 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Outputting The Results</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>962283a0-5662-4e66-a2a8-03de39d2ef64</md:uuid>
+</metadata>
+
+  <content>
+     <para id="para18">
+         This module comprises three different graphical interpretations of the output data mentioned in the previous module.  I will offer this brief introduction on the general layout of the subsections to follow so that you, the reader, may be better prepared to interpret the information:
+     </para>
+     <para id="para19">
+         At the beginning of each sub-section you will find the representative graph of the most simple "song" we could imagine: a chromatic scale.  For those not well-versed in music, a chromatic scale is one in which the instrument 'outputs' a series of notes, each note directly above or below its predecessor in frequency.  Note: "scale," in this sense, implies either a constant increase or decrease of tone; therefore if one note is directly above its predecessor, the following note must be directly above this one note.  Likewise for the alternate direction.
+     </para>
+     <para id="para20">
+         Following this graph will be a description.  At the end of the description will be placed another graph or three.  The distinction between the original chromatic scale and these secondary graphs is an important one: the individual (Michael Lawrence) who played the original samples also played the chromatic scale; the secondary graphs are interpretations of recordings done by professionals.  Thus, not only do we find we have an unbiased test-set, we see how the samples sampled at 22050 Hz compare with a recording sampled at 44100 Hz.  Our upsampling algorithm created to deal with just such a discrepancy is covered in the following module.
+     </para>
+     <para id="para21">
+<note type="note" id="idm2485024">The samples which generated these results are available in the following module.</note>
+     </para>
+
+     <section id="BestNoteRating">
+     <title>Most Likely Note Graph</title>
+     <figure id="ChromBestNoteRating">
+        <title>Chromatic Signal Most Likely Note</title>
+        <media id="idm9821456" alt=""><image src="../../media/ChromBestNoteRatingNew.JPG" mime-type="image/jpeg"/></media>
+        <caption>
+           This graphically represents the most likely note played in each window for a signal in which a chromatic scale is played.
+        </caption>
+     </figure>
+     <para id="para22">
+        The above graphical output method is the result of the most straight-forward analysis of our data.  Each window is assigned a single number which represents the note most likely to have been played within that window.  This graph-type is the only one in which noise plays a considerable role; setting the threshold to zero results in "most likely notes" being chosen for each window in which there is only noise.  Thus we have to <emphasis>tell</emphasis> the algorithm that only noise exists for those windows (i.e. it is silent).  Our value for silence is -1.  "1" corresponds to the lowest note on a Bb clarinet (an E in the chalameau register; in concert pitch, a D below middle C).  Each incremental advance above that is one half-step (a <term>half-step</term> is the term used to describe two notes considered 'next' to one another in frequency).
+     </para>
+     <para id="para23">
+        The following graph is the output of our program when fed a professionally-recorded solo clarinet (playing the first 22.676 seconds (1,000,000 samples) of Stravinsky's <emphasis>Three Pieces for Clarinet</emphasis>).  The chromatic waveform was created by the same individual who recorded the samples; thus the Stravinsky waveform represents an unbiased application of our algorithm against one instrument.  This graph is meaningless for a song in which multiple notes occur; thus there is no output corresponding to a song in which multiple instruments play.
+     </para>
+
+     <figure id="StravBestNoteRating">
+        <title>Stravinsky Most Likely Note</title>
+        <media id="idm2164336" alt=""><image src="../../media/StravBestNoteRatingNew.jpg" mime-type="image/jpeg"/></media>
+        <caption>
+           This graphically represents the most likely note played in each window for a professionally recorded signal (Stravinsky's <emphasis>Three Pieces for Clarinet</emphasis>).  Note: This piece was chosen because it is a solo clarinet playing; no other instruments play.  Also, note the one bad sample; the algorithm could not "pin down" its value.  (Interestingly, the final peak is actually the performer's breath-intake; a testament to the value of thresholds).  Lastly, the first note in the song is actually a grace note; our algorithm notices even this brief note as is made apparent in this graph.
+        </caption>
+     </figure>
+     </section>
+
+     <section id="NoteRating">
+     <title>Harmonic Likelihood Graph</title>
+     <figure id="ChromNoteRating">
+        <title>Rating Acheived by Various Harmonics in the Chromatic Signal</title>
+        <media id="idm9642432" alt=""><image src="../../media/ChromNoteRatingNew.jpg" mime-type="image/jpeg"/></media>
+        <caption>
+           Each window has assigned to it several values indicating the strength of each harmonic within that window.  For a window in which one note is played, this helps determine which is the note and which are merely the harmonics of that note.  This grahpically depicts that rating for a chromatic scale performed on a Bb clarinet.  
+        </caption>
+     </figure>
+     <para id="para24">
+        The above graphical output method is the result of a secondary, less straight-forward analysis of our data.  To show the merit of tailoring the inputs for the matched filter, we graphically represented the rating assigned to each harmonic in a given window.  Note how there is one over-arching, dominant waveform for nearly every window (except those in which there exists only noise) but see also the lesser, but still non-trivial, strengths of its harmonics.  Without filtering for octaves of a signal note, our algorithm would more likely be tricked into thinking the harmonics of a note were the note itself (or perhaps other notes being played).  
+     </para>
+     <para id="para25">
+        The noise is less of an issue when the data is perceived in this manner; thus no threshold value is required to determine that which is silence and that which is not.  This method is still not useful in analyzing a song in which multiple notes are played during a single moment in time.  For that, we turn to the third and last graphical method of representation.
+     </para>
+
+
+     <figure id="StravNoteRating">
+        <title>Rating Acheived by Various Harmonics in the Stravinsky Signal</title>
+        <media id="idm2544912" alt=""><image src="../../media/StravNoteRatingNew.jpg" mime-type="image/jpeg"/></media>
+        <caption>
+           The monotony of color says nothing about the signal; unfortunately, Matlab assigns colors for waveforms on a rotation of 8.  When graphing a series of functions in which it makes more sense to rotate by 12's, the coding becomes more difficult.  Therefore, two signals having similar color says nothing about their relative values.  
+        </caption>
+     </figure>
+     </section>
+     <section id="Score">
+     <title>Musical Score Interpretation Graph</title>
+     <figure id="ChromNoteScore">
+        <title>An Intuitive View of the Chromatic Scale</title>
+        <media id="idm9626448" alt=""><image src="../../media/ChromNoteScoreNew.jpg" mime-type="image/jpeg"/></media>
+        <caption>
+           This graphical method is intended to represent the data in the most intuitive way (for a musician); the same way as seen on a musical score.  Note that no harmonics are shown on this graph, only octaves of the given note.  This is a result of the tailoring algorithm (using the Hanning window) preceding the matched filter which filters out excessive notes to decrease the time required for computation.
+        </caption>
+     </figure>
+     <para id="para26">
+        The above graphical output method is the result of our attempts to present an intuitive representation of our data.  The goal is to produce an output which is most useful for someone completely unfamiliar with graphical methods yet intimately familiar with music.  Thus, we graph each window as an image with colors assigned to the various values of the data inside the window.  The result is something that looks surprisingly like a musical score.  The more "intense" or colorful a particular region seems, the more likely it is to be a note played within that window.  The chromatic scale serves to display the merits of this startling technique with distinction.
+     </para>
+     <para id="para27">
+        The first graph below this paragraph is the graphical interpretation of Stravinsky's <emphasis>Three Pieces for Clarinet</emphasis> using this method for processing our data described in this section.  It serves the same purpose as the preceding Stravinsky graphs.
+     </para>
+     <para id="para28">
+        The most useful application of this graphical method, however, is that one may readily view several notes playing at once.  This form is best embodied in the final two graphs.  To first gather some sense of how to interpret the graph when multiple instruments are playing, the second graph below this paragraph shows a stripped-down version of the output from our program when it is fed the first 90.703 seconds (4,000,000 samples) of Barber's <emphasis>Adagio for Strings</emphasis> as played by a clarinet choir.  A <term>choir</term> in its most general sense is merely the gathering of multiple like-familied instruments.  That is, all sorts of vocal instrumentation (soprano, alto, tenor, bass) form the most standard interpretation of choir.  Thus, a clarinet choir is one in which several members of the clarinet family (Eb, Bb, A, Alto/Eb, Bass, Contrabass, etc.) play in one ensemble.  The final graph on this page displays the output for Barber's <emphasis>Adagio For Strings</emphasis> in all its glory.
+     </para>
+
+     <figure id="StravNoteScore">
+        <title>The 'Musical Score' For The First 22 seconds of Stravinsky's "Three Pieces for Clarinet"</title>
+        <media id="idm9111952" alt=""><image src="../../media/StravNoteScoreNew.jpg" mime-type="image/jpeg"/></media>
+        <caption>
+           The musical score interpretation of the data output from an input of the first 22 seconds of Stravinsky's <emphasis>Three Pieces for Clarinet</emphasis>.
+        </caption>
+     </figure>
+     <figure id="BarberNoteScore">
+        <title>The 'Musical Score' for the First 90 Seconds of Barber's "Adagio for Strings" as Played by a Clarinet Choir</title>
+        <media id="idm9798624" alt=""><image src="../../media/BarberNoteScoreNew.jpg" mime-type="image/jpeg"/></media>
+        <caption>
+           The musical score interpretation of the data output from an input of the first 90 seconds of Barber's <emphasis>Adagio for Strings</emphasis> as played by a clarinet choir.  Note this is simplified for ease of interpretation.
+        </caption>
+     </figure>
+     <para id="para29">
+        The two graphs sandwiching this paragraph show the three voices of clarinet that play.  The top line is the lead clarinet (there is only one).  If one listens to the song, one may quickly note the 'v' in the middle appearing in the sound byte ("byte" used here in a general sense).  The second line is the supporting clarinets and the lowest line is the bass line (or harmonics thereof).  Our algorithm was told to search for three notes to produce these two graphs.
+     </para>
+     <figure id="BarberCluttered">
+        <title>The 'Musical Score' for the First 90 Seconds of Barber's "Adagio for Strings" as Played by a Clarinet Choir</title>
+        <media id="idm76832" alt=""><image src="../../media/BarberClutteredNew.JPG" mime-type="image/jpeg"/></media>
+        <caption>
+           The musical score interpretation of the data output from an input of the first 90 seconds of Barber's <emphasis>Adagio for Strings</emphasis> as played by a clarinet choir.  
+        </caption>
+     </figure>
+     </section>
+  </content>
+  
+</document>

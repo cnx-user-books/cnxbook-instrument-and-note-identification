@@ -1,0 +1,22 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Instrument and Note Identification</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>2f307317-2557-4436-a008-3ae1dbfa4bb5</md:uuid>
+</metadata>
+
+  <content>
+     <section id="Introduction">
+     <title>Introduction</title>
+
+    <para id="para1">
+       The final product utilizes several core signal processing concepts.  Some are interesting and non-intuitive; others are straight-forward and common-sensical.  Before we get into the nitty gritty details of the project's inner workings, we would be served well to familiarize ourselves with these core concepts.
+
+    </para>   
+
+
+    <para id="para2">
+       With that in mind, please navigate (using the links on the left) to whichever page has a title unfamiliar to you.  As a nod to our superiors and as an attempt to make use of this site in its full glory, we include many modules written by those more knowledgeable than us.  The direct applications will be discussed when the project itself is specifically addressed.
+    </para> 
+   </section>
+  </content>
+  
+</document>

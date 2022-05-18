@@ -1,0 +1,41 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Note Recognition</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>72da2446-aef8-4372-8971-56bd4d39d2cc</md:uuid>
+</metadata>
+
+  <content>
+     <section id="General">
+     <title>Macroscopic View</title>
+     <figure id="GeneralBlockDiagram">
+        <title>General-View Block Diagram</title>
+        <media id="idm723248" alt=""><image src="../../media/BlockDiagram.jpg" mime-type="image/jpeg"/></media>
+        <caption>
+           This represents our project on an abstract level.
+        </caption>
+     </figure>
+     <para id="para1">
+        This project attempts (and, for the most part, succeeds) to identify a single instrument lost among a barrage of other instruments.  More than that, it attempts to identify which sequence of notes the instrument is playing, the volume at which it plays them and the duration of time for which the instrument plays.
+     </para>
+
+     <para id="para2">
+        The theory is relatively simple (indeed, we learned it in an introductory course).  For the instrument recognition to work, we must first have a sample of that instrument playing.  Ideally, we would need only one sample from which we could derive all the others using the one-dimensional application of a Mellin-Fourier transform.  Considerations of time, however, caused us to forgo this option.  We instead approached the collection of samples as a good communist would; with great emphasis on labor.  For the purposes of this project, 33 samples (i.e. notes) of a clarinet playing were recorded.
+     </para>
+
+     <para id="para3">
+        Each of these samples was then matched against the inputted waveform to measure correlation.  The algorithm for accomplishing this task is as follows:
+        <list id="Algorithm" list-type="enumerated">
+           <title>Correlation Algorithm</title>
+           <item>If it is too large, "chop" the inputted waveform (henceforth referred to as "signal," an all-encompassing term) into smaller, easier-to-handle chunks.</item>
+           <item>Input each of those chunks into a program which takes the Fourier transform of both the signal and the samples, multiplies them, and then inverts them back into the time-domain (i.e. convolves the two signals).</item>
+           <item>Based on various thresholds and numerous considerations, choose the sample which most closely matches the signal (i.e. read off the highest peak and assign it a value; if that value is high enough, select it as the representative sample).</item>
+           <item>Output the data in a user-friendly fashion.</item>  
+        </list>
+        The implementation of the second step is called a "matched filter."   
+     </para>
+     <para id="para4">
+        The remainder of this course will focus on the four steps of the correlation algorithm.
+     </para>
+     </section>
+     </content>
+  
+</document>

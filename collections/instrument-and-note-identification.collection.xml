@@ -1,0 +1,36 @@
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+    <md:content-id>col10249</md:content-id>
+    <md:title>Instrument and Note Identification</md:title>
+    <md:language>en</md:language>
+    <md:license url="http://creativecommons.org/licenses/by/1.0">Creative Commons Attribution License</md:license>
+    <md:uuid>67a0d15a-22f4-41cc-84c4-02f74a4cf971</md:uuid>
+<md:slug>instrument-and-note-identification</md:slug>
+</metadata>
+  <col:content>
+    <col:subcollection>
+      <md:title>Introduction and Background</md:title>
+      <col:content>
+        <col:module document="m12462"/>
+        <col:module document="m12461"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Methodology</md:title>
+      <col:content>
+        <col:module document="m12465"/>
+        <col:module document="m12463"/>
+        <col:module document="m12464"/>
+        <col:module document="m12466"/>
+        <col:module document="m12467"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Completing The Task</md:title>
+      <col:content>
+        <col:module document="m12485"/>
+        <col:module document="m12486"/>
+      </col:content>
+    </col:subcollection>
+  </col:content>
+</col:collection>

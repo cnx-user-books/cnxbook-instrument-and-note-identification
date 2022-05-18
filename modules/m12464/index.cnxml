@@ -1,0 +1,51 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Matched Filter</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>7d5d35d0-c63e-4784-87d6-1c9f92554b1b</md:uuid>
+</metadata>
+
+  <content>
+     <section id="Matched">
+     <title>Matched Filter</title>
+     <figure id="Step2">
+        <title>The relevant portion of the block diagram</title>
+        <media id="idp2526128" alt=""><image src="../../media/Step2.jpg" mime-type="image/jpeg"/></media>
+        <caption>
+           The Matched Filter.  
+        </caption>
+     </figure>
+     <para id="para9">
+        The matched filter segment of our project is perhaps the easiest to code but the most difficult conceptually.  An understanding of Fourier analysis, convolution and manipulations in frequency domain is required.  Although we made available several supplementary links at the beginning of the course, a brief recapitulation of the basic theory is warranted.
+     </para>
+     <section id="Fourier">
+     <title>Fourier Analysis</title>
+     <para id="para10">
+         <link url="http://en.wikipedia.org/wiki/Jean_Baptiste_Joseph_Fourier">Jean Baptiste Joseph Fourier</link> discovered, approximately 200 years ago, that any function could be represented by weighted averages of any periodic base function.  The most common application of Fourier analysis is through the use of sinusoidal waves, but using a sinusoid as a basis is not necessary - any periodic function will do.  This weighing was perceived as a series of coefficients, each coefficient corresponding to a specific frequency of the periodic base function.  From consideration of these coefficients, it was realized there existed a <emphasis>frequency domain</emphasis>.  Thus, there was a medium in which discussion of a non-periodic function's frequency made sense.  This discovery has had many impressive results, not the least of which is the concept of a matched filter.
+     </para>
+     <para id="para11">
+        <link url="http://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</link> later expounded on Fourier's realization and found what is the now-known fastest algorithm for computing Fourier coefficients.  Unfortunately for 20th century scientists, no one remembered Gauss developed the algorithm until <emphasis>after</emphasis> it had been rederived.
+     </para>
+     </section>
+     <section id="Convolution">
+     <title>Convolution</title>
+     <para id="para12">
+        Convolution is at the heart of matched filters.  One can easily visualize placing a transparancy of an image over another image to gauge the similarity of the two images.  Convolution does essentially just that with two functions; it places one function over another function and outputs a single value suggesting a level of similarity, then it moves the first function an infinitesimally small distance and finds another value.  The end result is a graph which peaks at the point where the two images are most similar.
+     </para>
+     <para id="para13">
+        Another method of attack may be seen through the Cauchy-Schwarz Inequality.  <link document="m10757">This</link> page does an enviable job of approaching matched filtering from that angle.
+     </para>
+     </section>
+     <para id="para14">
+        The concept that binds these two seemingly disparate topics is almost startling in its beauty (for those of us who have ever had to perform convolution integrals).  Convolution in the time domain (the domain in which we would want to compare two signals) just happens to be multiplication in the frequency domain.  And, as it turns out, performing two Fast Fourier Transforms (FFTs), multiplying the results, and then performing two Inverse FFTs (IFFTs) is computationally faster than performing one convolution between the two signals and provides the same result.
+     </para>
+     </section>
+     <section id="summary">
+     <title>Summary</title>
+     <para id="para15">
+        A matched filter compares two signals and outputs a function describing the places at which the two signals are most like one another.  This is accomplished through FFTing two signals, multiplying their coefficients and IFFTing the result.
+     </para>
+
+     </section>
+
+  </content>
+  
+</document>

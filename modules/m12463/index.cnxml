@@ -1,0 +1,35 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Deconstructing a Signal</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>745fbe22-3bdb-443b-b93f-a43947fd772f</md:uuid>
+</metadata>
+
+  <content>
+     <section id="Chop">
+     <title>Deconstructing the Signal</title>
+     <figure id="Step1">
+        <title>The relevant portion of the block diagram</title>
+        <media id="idm8306768" alt=""><image src="../../media/Step1.jpg" mime-type="image/jpeg"/></media>
+        <caption>
+           The signals must be tailored for the Matched Filter.  
+        </caption>
+     </figure>
+     <para id="para5">
+        The main program for our project requires six separate inputs.  Two are the signal and the samples mentioned above.  The other four are, in no particular order, the size of the pieces into which you want the signal broken, the size of the window looking at each piece, the rate at which the music is sampled from its continuous origins and the maximum number of notes the user expects to find playing at one time.
+     </para>   
+     <para id="para6">
+        The first step of the correlation algorithm, deconstructing the signal, is concerned with the signal, the size of the pieces and the size of the window.  The data from the signal is broken into several smaller chunks by boxcar filtering the original signal and storing the information in a new matrix.  Each row of the new matrix corresponds to the data from each window.  It is worth noting that each chunk does not overlap its neighbor and is left otherwise unaltered, save for the case of the final chunk to which zeros are appended if it is not of the correct size.
+     </para>
+     <para id="para7">
+         This data is then treated as a new signal; this helps speed the processing time.  Each row of the new matrix representing the chunks is then divided into yet smaller windows for analysis.  These windows may be either Hanning windows or boxcar windows, depending on the analysis to follow (two separate analyses occur to maximize note recognition and computational time).  These windows <emphasis>do</emphasis> overlap.  
+     </para>
+     <para id="para8">
+         At this point, the boxcar windows are ready to be sent to the next step.  The Hanning windows, however, must first undergo a treatment and recognize their purpose.  From the matrix extant after processing the original signal into Hanning windows, the power of each row is computed and weighed against all possible note values (that is, an entire octave; not the full range of the instrument).  The most powerful result is placed in a new matrix and fed back to the parent function.  This selection of a specific note means that the next stage of the correlation algorithm will need only check separate octaves of one note instead of running through the full range of an instrument (a very tedious and cycle-consuming proposition).  
+     </para>
+     <para id="para9">
+        As a further clarification and justification, we shall rehash the difference between the Hanning and boxcar windows.  All windows are initially filtered through a boxcar window in order to best preserve the data (we are not interested in reconstructing the signal).  That information then goes two places: the matched filter and the note-recognizing algorithm.  The latter set is put through a Hanning window for ease of analysis; low frequency signals are better preserved in a Hanning window.  It is from that analysis that the one note (in a given octave) to test is chosen.
+     </para>
+     </section>
+ 
+  </content>
+  
+</document>

@@ -1,0 +1,40 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Matched Filter Output Analysis</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>d3465cb7-3478-44bc-b5ae-9c1dbc02a068</md:uuid>
+</metadata>
+
+  <content>
+     <figure id="Step3">
+        <title>The relevant portion of the block diagram</title>
+        <media id="idp284448" alt=""><image src="../../media/Step3.jpg" mime-type="image/jpeg"/></media>
+        <caption>
+           The final analysis.  
+        </caption>
+     </figure>
+     <section id="Processing">
+     <title>Processing</title>
+     <para id="para12">
+         After having performed the actual matched filtering, we need to make sense of the data.  Unfortunately, matched filters provide only an insight as to what <emphasis>might</emphasis> be the best answer; it cannot definitively say "yes, this is what you want."  Without telling our program to ignore signals of little power, even the noise inherent in all recordings will match some specific value better than all other values.  With that in mind we created two threshold constraints and validated our results from the matched filtering.
+     </para>
+     <section id="Technique">
+     <title>Validation Techniques</title>
+     <para id="para13">
+         Perhaps the easiest to detect, the volume level affects results most significantly.  If the sample's amplitude is substantially different than that of the signal, matching may not even occur.  Therefore, our first technique is merely to normalize the volume between the sample and the signal.  Important information is lost; we therefore record the volume for later reference.
+     </para>
+     <para id="para14">
+         The second technique involves determining a threshold value for noise.  The question to be answered: "What is the level of power below which one may consider the signal silent?"  Unfortunately, we found no sound method (pun intended) through which we could automatically find this power level.  We therefore just listen to the signal and input the threshold accordingly.  Fortunately, this threshold value affects only the outputting of the data (which will be discussed in the next section) and does not affect the integrity of our algorithm.
+     </para>
+     <para id="para15">
+        Also of concern is the degree to which a particular harmonic's strength weighs into the consideration of a note value.  This becomes especially troublesome when one searches for multiple notes playing at a single moment in time.  That is to say: based on what we know about a single note producing multiple harmonics, we must single out which harmonic is the true note being played.  For one note playing at one time, this is simple: choose the largest peak and be done with it.  For multiple notes, however, one must define yet another threshold; the threshold above which a possible secondary (or tertiary, or... well, you get the idea) harmonic transcends its lowly status and becomes the fundamental harmonic of a separate note.  The value for this threshold is even more ambiguous in nature than the silence threshold.  Lacking an automated routine to calculate this threshold is perhaps the most significant weakness in our program in terms of scaling the number of recognized notes to map the music from an entire orchestra.
+     </para>
+     </section>
+     <para id="para16">
+        Once one has completed the various methods of validation, one must put the information together in a coherent manner.  Using the ever-versatile language of Matlab, we create a three-dimensional matrix to hold the relevant information before further condensing it into two dimensions.  One dimension of the three-dimensional matrix is the number of samples against which the signal is checked; another is the number of the window against which the samples are checked; the third dimension is the number of data points being checked.  So, for any given spot in the matrix, one can read off the data point tested, the window in which it was tested, and the score it received as a result of the testing.  Because one checks only against a certain octave-set for matching (due to the Hanning window algorithm), most entries in this three-dimensional matrix are zero.  The two-dimensional matrix simply integrates all of the windows into one coherent whole (remember, the windows overlap; thus this final form is not perfectly analogous to the original signal).
+     </para>
+     <para id="para17">
+        This information is the output of our primary program, ProjectD.m.  All of the relevant data is stored in the outputted two-dimensional matrix.  However, the formatting is such that it is difficult to understand from viewing only the entries.  With this in mind, we created a secondary program, postProcessing.m, which is responsible for presenting the information in a user-friendly fashion.
+     </para>
+     </section>
+     </content>
+  
+</document>
